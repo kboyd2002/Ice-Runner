@@ -5,7 +5,8 @@
   "main": "index.js",
   "types": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "Christopher Bartlett, Elizabeth Tucker, Kelly Boyd, Apollo Vavra",
@@ -21,6 +22,7 @@
     "mysql2": "^3.6.3",
     "phaser": "^3.60.0",
     "sequelize": "^6.34.0",
+    "sequelize-typescript": "^2.1.5",
     "typescript": "^5.2.2",
     "uuid": "^9.0.1"
   },
