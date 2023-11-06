@@ -2,8 +2,12 @@ body {
     background-color: aqua;
 }
 
+
+
 .title {
     color: black;
+    width: 20%;
+    margin: auto;
     text-align: center;
     font-size: larger;
     border: 10px;
@@ -12,9 +16,23 @@ body {
 }
 
 .main {
-    height: 50%;
+    margin: auto;
+    margin-top: 2%;
+    height: 70%;
     width: 70%;
     border: 10px;
     border-color: black;
     border-style: dashed;
+}
+
+.leaderboard {
+    margin-left: auto;
+    width: 12%;
+    height: 30%;
+    border: 5px;
+    border-color: black;
+    border-style: solid;
+    position: absolute;
+    left: 86%;
+    text-align: center;
 }
