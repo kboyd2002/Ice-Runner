@@ -1,11 +1,17 @@
 const router = require('express').Router();
 const{ User } = require('../../models');
+const { v4: uuidv4 } = require('uuid');
+const bcrypt = require('bcrypt');
 
 router.post('/', async (req, res) => {
     try {
-        const newUser = await User.create({
+        const newUser = req.body;
+        newUser.password = await bcrypt.hash(req.body.password, 10)
+        
+        const userData = await User.create({
             username: req.body.username,
-            password: req.body.password
+            password: req.body.password,
+            id: uuidv4()
         })
 
         req.session.save(() => {
@@ -27,14 +33,17 @@ router.post('/login', async (req, res) => {
             }
         })
 
+        const newUser = user.get({ plain: true })
+
         if (!user) {
-            res
-                .status(400)
-                .json({message: 'No such User ID. Please try again, or create an account'})
+            res.status(400).json({message: 'No such User ID. Please try again, or create an account'})
             return;
         }
 
-        const validPassword = await user.checkPassword(req.body.password);
+        const validPassword = await bcrypt.compare(
+            req.body.password,
+            user.password
+        );
 
         if (!validPassword) {
             res
@@ -56,7 +65,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-route.post('/logout', (req,res) => {
+router.post('/logout', (req,res) => {
     if(req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();
