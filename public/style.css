@@ -1,0 +1,20 @@
+body {
+    background-color: aqua;
+}
+
+.title {
+    color: black;
+    text-align: center;
+    font-size: larger;
+    border: 10px;
+    border-color: black;
+    border-style: dashed;
+}
+
+.main {
+    height: 50%;
+    width: 70%;
+    border: 10px;
+    border-color: black;
+    border-style: dashed;
+}
