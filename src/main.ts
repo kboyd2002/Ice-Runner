@@ -8,83 +8,88 @@ var score = 0;
 var gameOver = false;
 var scoreText;
 
-
-function preload() {
-    this.load.image('background', './assets/background.png');
-    this.load.image('ground', './assets/platform.png');
-    this.load.image('snowballs', './assets/snow.png');
-    this.load.image('bullet', './assets/snow.png');
-    this.load.spritesheet('dude', './assets/Snowman.png', { frameWidth: 64, frameHeight: 96 });
+function preload()
+{
+    this.load.image('background', './src/assets/background.png');
+    this.load.image('ground', './src/assets/platform.png');
+    this.load.image('snowballs', './src/assets/snow.png');
+    this.load.spritesheet('dude', './src/assets/Snowman.png', { frameWidth: 64, frameHeight: 96 });
 }
 
-function create() {
-    this.physics.world.setBounds(0, 0, 5000, 600);
+function create()
+{
+    this.cameras.main.setBounds(0, 0, 2000, 1080 * 2);
+    this.physics.world.setBounds(0, 0, 2000, 1080 * 2);
 
-    this.add.image(400, 300, 'background');
+    this.add.image(0, 0, 'background').setOrigin(0);
+    this.add.image(800, 0, 'background').setOrigin(0).setFlipX(true);
+    this.add.image(1600, 0, 'background').setOrigin(0).setFlipX(true);
+ 
+
     cursors = this.input.keyboard.createCursorKeys();
     platforms = this.physics.add.staticGroup();
-
     platforms.create(400, 625, 'ground').setScale(2).refreshBody();
-
+    platforms.create(1200, 625, 'ground').setScale(2).refreshBody();
+    platforms.create(2000, 625, 'ground').setScale(2).refreshBody();
     platforms.create(600, 400, 'ground');
+    platforms.create(1800, 400, 'ground');
     platforms.create(50, 250, 'ground');
+    platforms.create(1400, 250, 'ground');
     platforms.create(750, 220, 'ground');
 
     player = this.physics.add.sprite(100, 450, 'dude');
+    player.setCollideWorldBounds(true);
+    this.cameras.main.startFollow(player, true, 0.05, 0.05, 0, 200); // Updated this line
 
-    //  Player physics properties. Give the little guy a slight bounce.
     player.setBounce(0.2);
     player.setCollideWorldBounds(true);
 
     snowballs = this.physics.add.group({
         key: 'snowballs',
-        repeat: 11,
-        setXY: { x: 12, y: 0, stepX: 70 }
+        repeat: 30,
+        setXY: { x: 15, y: 0, stepX: 70 }
     });
 
     snowballs.children.iterate(function (child) {
-
-        //  Give each star a slightly different bounce
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-
     });
 
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(snowballs, platforms);
     this.physics.add.overlap(player, snowballs, collectSnowballs, null, this);
-
-    this.timedEvent = this.time.delayedCall(3000, this.gameOver, [], this)
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 }
 
-
-function update() {
-    this.remainingTime = this.timedEvent.getRemainingSeconds();
-    this.textTime.setText(`Remaining Time: ${Math.round(this.remainingTime).toString()}`);
-
+function update()
+{
     if (gameOver) {
         return;
     }
-    {
 
+    if (cursors.left.isDown) {
 
-        if (cursors.left.isDown) {
-            player.setVelocityX(-160);
-        }
-        else if (cursors.right.isDown) {
-            player.setVelocityX(160);
-        }
-        else {
-            player.setVelocityX(0);
-        }
-        if (cursors.up.isDown && player.body.touching.down) {
-            player.setVelocityY(-360);
-        }
+        player.setVelocityX(-160);
+
+    } else if (cursors.right.isDown) {
+        
+        player.setVelocityX(160);
+
+    } else {
+        player.setVelocityX(0);
+    }
+
+    if (cursors.up.isDown && player.body.touching.down) {
+
+        player.setVelocityY(-360);
+
     }
 }
 
-function collectSnowballs(player, snowballs) {
+function collectSnowballs(player, snowballs)
+{
     snowballs.disableBody(true, true);
-
+    score += 10;
+    scoreText.setText('Score: ' + score);
 }
 
 var TimerEvent = new Class({
