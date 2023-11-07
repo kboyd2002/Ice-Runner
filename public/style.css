@@ -1,11 +1,19 @@
-body {
-    background-image: url('snowy.png');
-    filter: blur(px);
+body, html {
+  height: 100%;
 }
 
-img {
-  height: 25%;
-  width: 100%;
+.bg-image {
+  /* The image used */
+  background-image: url('snowy.png');
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .title {
@@ -17,9 +25,26 @@ img {
     border: 5px;
     border-color: black;
     border-style: solid;
+    position: absolute;
+    left: 50%;
+    top: 12%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    height: 22%;
+}
+
+.titlegif {
+  height: 100%;
+  width: 100%;
 }
 
 .main {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; 
+    text-align: center;
     margin: auto;
     height: 70%;
     width: 70%;
@@ -38,6 +63,9 @@ img {
     position: absolute;
     left: 86%;
     text-align: center;
+    top: 10%;
+    color: lightblue;
+    font-weight: 400;
 }
 
 .snowflakes {
