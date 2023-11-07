@@ -1,3 +1,4 @@
+import Phaser from 'phaser'
 
 var player;
 var snowballs;
@@ -13,16 +14,18 @@ function preload ()
     this.load.image('background', './assets/background.png');
     this.load.image('ground', './assets/platform.png');
     this.load.image('snowballs', './assets/snow.png');
+    this.load.image('bullet', './assets/snow.png');
     this.load.spritesheet('dude', './assets/Snowman.png', { frameWidth: 64, frameHeight: 96 });
 }
 
 function create ()
-{
+{   this.physics.world.setBounds(0, 0, 5000, 600);
+
     this.add.image(400, 300, 'background');
     cursors = this.input.keyboard.createCursorKeys();
     platforms = this.physics.add.staticGroup();
 
-    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    platforms.create(400, 625, 'ground').setScale(2).refreshBody();
 
     platforms.create(600, 400, 'ground');
     platforms.create(50, 250, 'ground');
@@ -31,7 +34,7 @@ function create ()
     player = this.physics.add.sprite(100, 450, 'dude');
 
     //  Player physics properties. Give the little guy a slight bounce.
-    player.setBounce(0);
+    player.setBounce(0.2);
     player.setCollideWorldBounds(true);
 
     snowballs = this.physics.add.group({
@@ -50,7 +53,9 @@ function create ()
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(snowballs, platforms);
     this.physics.add.overlap(player, snowballs, collectSnowballs, null, this);
+
 }
+    
 
 function update ()
 {
@@ -59,7 +64,7 @@ function update ()
         return;
     }
     {
-        // player.setVelocity(0);
+
 
         if (cursors.left.isDown)
         {
@@ -75,7 +80,7 @@ function update ()
         }
         if (cursors.up.isDown && player.body.touching.down)
     {
-        player.setVelocityY(-330);
+        player.setVelocityY(-360);
     }
     }
 }
@@ -103,9 +108,5 @@ var config = {
     }
     
 };
+
 var game = new Phaser.Game(config);
-</script>
-
-</body>
-</html>
-
