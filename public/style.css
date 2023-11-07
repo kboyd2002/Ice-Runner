@@ -1,8 +1,16 @@
 body {
-    background-color: whitesmoke;
+  margin: 0%;
 }
 
-
+.bg-image {
+  background-image: url('snowy.png');
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .title {
     color: black;
@@ -10,19 +18,35 @@ body {
     margin: auto;
     text-align: center;
     font-size: larger;
-    border: 10px;
+    border: 5px;
     border-color: black;
-    border-style: dashed;
+    border-style: groove;
+    position: absolute;
+    left: 50%;
+    top: 11.5%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    height: 21%;
+}
+
+.titlegif {
+  height: 100%;
+  width: 100%;
 }
 
 .main {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; 
+    text-align: center;
     margin: auto;
-    margin-top: 2%;
-    height: 70%;
+    height: 72%;
     width: 70%;
-    border: 10px;
+    border: 5px;
     border-color: black;
-    border-style: dashed;
+    border-style: groove;
 }
 
 .leaderboard {
@@ -31,11 +55,20 @@ body {
     height: 30%;
     border: 5px;
     border-color: black;
-    border-style: solid;
+    border-style: groove;
     position: absolute;
     left: 86%;
     text-align: center;
+    top: 10%;
+    color: black;
+    font-weight: 600;
 }
+
+ul {
+  list-style-type: decimal;
+  text-align: left;
+}
+
 
 .snowflakes {
     position: fixed;
@@ -44,13 +77,14 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
+    z-index: 1;
   }
   
   .snowflake {
     position: absolute;
-    width: 20px; /* Set the width of the snowflake */
-    height: 20px; /* Set the height of the snowflake */
-    background-image: url('snowflake.webp'); /* Set the image path */
+    width: 20px;
+    height: 20px; 
+    background-image: url('snowflake.webp'); 
     background-size: cover;
     animation: snowfall linear infinite;
   }
