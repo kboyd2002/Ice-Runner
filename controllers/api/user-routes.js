@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
         req.session.save(() => {
             req.session.loggedIn = true;
 
-            res.status(200).json(newUser)
+            res.status(200).json(userData)
         })
     } catch (err) {
         console.log(err);
@@ -35,7 +35,7 @@ router.post('/login', async (req, res) => {
 
         const newUser = user.get({ plain: true })
 
-        if (!user) {
+        if (!newUser) {
             res.status(400).json({message: 'No such User ID. Please try again, or create an account'})
             return;
         }
