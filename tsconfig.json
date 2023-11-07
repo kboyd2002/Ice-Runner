@@ -10,6 +10,7 @@
                 "config/**/*",
                 "controllers/**/*",
                 "models/**/*",
+                "utils/**.*",
                 "ts/**/*",
                 "server.ts"
                ],
