@@ -22,14 +22,10 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        wins: {
+        score: {
             type: DataTypes.INTEGER,
             allowNull: true,
         },
-        losses: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-        }
     },
     {
         hooks: {
