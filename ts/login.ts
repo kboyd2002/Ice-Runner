@@ -1,4 +1,4 @@
-const loginFormHandler = async (event: Event) => {
+export const loginFormHandler = async (event: Event) => {
   event.preventDefault();
 
   const username = (document.querySelector('#username-login') as HTMLInputElement).value.trim();
@@ -19,7 +19,7 @@ const loginFormHandler = async (event: Event) => {
   }
 };
 
-const signupFormHandler = async (event: Event) => {
+export const signupFormHandler = async (event: Event) => {
   event.preventDefault();
 
   const username = (document.querySelector('#username-signup') as HTMLInputElement).value.trim();
