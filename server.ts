@@ -23,5 +23,3 @@ try {
 } catch (error) {
     console.log(`Error occurred: ${error.message}`)
 }
-
-app.use('/seq', sequelize);
