@@ -4,14 +4,22 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const sequelize = new Sequelize(
-  process.env.DB_NAME as string,
-  process.env.DB_USER as string,
-  process.env.DB_PASSWORD as string,
+  process.env.DB_NAME || '',
+  process.env.DB_USER || '',
+  process.env.DB_PASSWORD || '',
   {
-    host: process.env.DB_HOST as string,
+    host: process.env.DB_HOST || 'localhost',
     dialect: 'mysql',
     port: 3306,
   }
 );
 
-export default sequelize;
+sequelize.authenticate()
+  .then(() => {
+    console.log('Connected to the database.');
+  })
+  .catch((error: Error) => {
+    console.error('Unable to connect to the database:', error);
+  });
+
+export default sequelize
