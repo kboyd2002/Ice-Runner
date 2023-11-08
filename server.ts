@@ -1,6 +1,6 @@
 import express, {Request, Response } from "express";
 import session from "express-session";
-import exphes from "express-handlebars";
+import exphbs from "express-handlebars";
 import dotenv from "dotenv";
 import { Model, InferAttributes , InferCreationAttributes, CreationOptional } from 'sequelize';
 
@@ -13,7 +13,7 @@ app.get("/", (req: Request, res: Response) => {
     return res.json();
 });
 
-app.post()
+// app.post()
 
 // Listen to server
 try {
@@ -23,3 +23,5 @@ try {
 } catch (error) {
     console.log(`Error occurred: ${error.message}`)
 }
+
+app.use('/seq', sequelize);
