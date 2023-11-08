@@ -2,10 +2,11 @@ import express from "express";
 import path from "path";
 import { Request, Response } from "express";
 import apiRoutes from './controllers/api/';
-import session from "express-session";
 import { engine } from "express-handlebars";
 import sequelize from "./config/connection";
 import { loginFormHandler, signupFormHandler } from './ts/login';
+import { logoutFormHandler } from "./ts/logout";
+
 const app = express();
 
 app.get("/", (req: Request, res: Response) => {
@@ -29,7 +30,8 @@ app.use('/seq', sequelize)
 
 // Login and logout routes
 app.use('/login', loginFormHandler);
-
+app.use('/signup' signupFormHandler);
+app.use('/logout', logoutFormHandler);
 
 
 // Listen to server

@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-const logout = async () => {
+export const logoutFormHandler = async () => {
   try {
     const response = await fetch('/api/users/logout', {
       method: 'POST',
@@ -18,6 +18,6 @@ const logout = async () => {
   }
 };
 
-document.querySelector('#logout')!.addEventListener('click', logout);
+document.querySelector('#logout')!.addEventListener('click', logoutFormHandler);
 
 export { logout };
