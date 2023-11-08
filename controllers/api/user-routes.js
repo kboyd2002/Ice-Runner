@@ -5,6 +5,31 @@ const bcrypt = require('bcrypt');
 
 router.post('/', async (req, res) => {
     try {
+        const dbUserData = await User.findAll({
+            include: [
+                {
+                    model: User,
+                    attributes: ['username']
+                }
+            ]
+        });
+
+    const users = dbGalleryData.map((user) =>
+    gallery.get({ plain: true })
+    );
+
+    res.render('homepage', {
+        user,
+        loggedIn: req.session.loggedIn,
+    });
+} catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+}
+});
+
+router.post('/', async (req, res) => {
+    try {
         const newUser = req.body;
         newUser.password = await bcrypt.hash(req.body.password, 10)
         
