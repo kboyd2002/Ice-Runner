@@ -26,7 +26,7 @@ function preload()
 
 function create()
 {   
-    // sets the boundary for camera and for the physical border for MC
+    // sets the boundary for camera and for the physical border for player
     this.cameras.main.setBounds(0, 0, 5000, 600);
     this.physics.world.setBounds(0, 0, 5000, 600);
 // add the winter background to keep repeating after the int starting page
