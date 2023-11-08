@@ -1,16 +1,14 @@
 {
-    "compilerOptions": {
-      "module": "NodeNext",
-      "moduleResolution": "NodeNext",
-      "target": "ES2021",
-      "sourceMap": true,
-      "outDir": "dist",
-    },
-    "include": ["src/**/*",
-                "config/**/*",
-                "controllers/**/*",
-                "models/**/*",
-                "ts/**/*",
-                "server.ts"
-               ],
-  }
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES6",
+    "sourceMap": true,
+    "allowJs": true,
+    "outDir": "dist",
+  },
+  "include": ["*/**/*",
+              "server.ts"
+            ],
+            
+}

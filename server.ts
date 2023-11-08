@@ -1,11 +1,11 @@
 import express from "express";
 import path from "path";
 import { Request, Response } from "express";
-import apiRoutes from './controllers/api/';
+const routes = require('./controllers/api/');
 import { engine } from "express-handlebars";
-import sequelize from "./config/connection.js";
-import { loginFormHandler, signupFormHandler } from './ts/login.js';
-import { logoutFormHandler } from "./ts/logout.js";
+import { sequelize } from "./config/connection.js";
+import { loginFormHandler, signupFormHandler } from './js/login.js';
+import { logoutFormHandler } from "./js/logout.js";
 
 const app = express();
 
@@ -23,7 +23,7 @@ const publicPath = path.join(__dirname, 'public');
 app.use(express.static(publicPath));
 
 // Register API routes
-app.use('/api', apiRoutes);
+app.use('/api', routes);
 
 // Connect to Sequelize
 app.use('/seq', sequelize)
