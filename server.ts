@@ -4,11 +4,8 @@ import { Request, Response } from "express";
 import apiRoutes from './controllers/api/';
 import session from "express-session";
 import { engine } from "express-handlebars";
-import dotenv from "dotenv";
-import { Model, InferAttributes , InferCreationAttributes, CreationOptional } from 'sequelize';
-import loginRouter from "./ts/login";
-import logoutRouter from "./ts/logout"
-
+import sequelize from "./config/connection";
+import { loginFormHandler, signupFormHandler } from './ts/login';
 const app = express();
 
 app.get("/", (req: Request, res: Response) => {
@@ -27,9 +24,12 @@ app.use(express.static(publicPath));
 // Register API routes
 api.use('/api', apiRoutes);
 
+// Connect to Sequelize
+app.use('/seq', sequelize)
+
 // Login and logout routes
-app.use('/login', loginRouter);
-app.use('/logout', logoutRouter);
+app.use('/login', loginFormHandler);
+
 
 
 // Listen to server
