@@ -1,10 +1,9 @@
-
 import { Router, Request, Response } from 'express';
-import { User } from '../../models';
+import { User } from './models';
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
 
-const router: Router = Router();
+const router = Router()
 
 router.post('/', async (req: Request, res: Response) => {
   try {
@@ -24,7 +23,7 @@ router.post('/', async (req: Request, res: Response) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    res.status(500).json({ error: 'An internal server error occurred' });
   }
 });
 
@@ -59,7 +58,7 @@ router.post('/login', async (req: Request, res: Response) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    res.status(500).json({ error: 'An internal error occured' });
   }
 });
 

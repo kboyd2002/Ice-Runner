@@ -3,9 +3,9 @@ import path from "path";
 import { Request, Response } from "express";
 import apiRoutes from './controllers/api/';
 import { engine } from "express-handlebars";
-import sequelize from "./config/connection";
-import { loginFormHandler, signupFormHandler } from './ts/login';
-import { logoutFormHandler } from "./ts/logout";
+import sequelize from "./config/connection.js";
+import { loginFormHandler, signupFormHandler } from './ts/login.js';
+import { logoutFormHandler } from "./ts/logout.js";
 
 const app = express();
 
@@ -23,14 +23,14 @@ const publicPath = path.join(__dirname, 'public');
 app.use(express.static(publicPath));
 
 // Register API routes
-api.use('/api', apiRoutes);
+app.use('/api', apiRoutes);
 
 // Connect to Sequelize
 app.use('/seq', sequelize)
 
 // Login and logout routes
 app.use('/login', loginFormHandler);
-app.use('/signup' signupFormHandler);
+app.use('/signup', signupFormHandler);
 app.use('/logout', logoutFormHandler);
 
 

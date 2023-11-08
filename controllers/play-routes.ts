@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { User, Scores, Character } from "../models";
+import router from './index.js';
 
-// const loggedIn =  require
 
 router.get('/', async (req: Request, res: Response) => {
     try {
