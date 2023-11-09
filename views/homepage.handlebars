@@ -1,28 +1,24 @@
-<!doctype html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8" />
-    <title>Ice Runner</title>
-    <script src="//cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="//cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.js"></script>
+  <title>Ice Runner</title>
   <link rel="stylesheet" type="text/css" href="/css/jass.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
-  <div class="titleDiv">
-      <header class="title">
-        <img class="titlegif" src="images/IceRunner.gif" alt="Ice Runner">
-      </header>
-  </div>
-    <div class="bg-image"></div>
-    <div>
-      {{!-- <div class="leaderboard">
-        <h2>Leaderboard:</h2>
-        <ul id="leaderboard">
-        </ul>
-      </div> --}}
-  <nav>
-     <div class="snowflakes" aria-hidden="true">
+    {{!-- <div> {{#if loggedIn}}
+    <button id="logout" class="btn-no-style">Logout</button>
+    {{else}}
+    <a href="/login">Login</a>
+    {{/if}}
+  </nav> --}}
+  <main>
+ <div class="snowflakes" aria-hidden="true">
         <div class="snowflake"></div>
         <div class="snowflake"></div>
         <div class="snowflake"></div>
@@ -50,26 +46,14 @@
         <div class="snowflake"></div>
         <!-- You can add more snowflakes here -->
       </div>
-    <a href="/">Home</a>
-    {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <a href="/login">Login</a>
-    {{/if}}
-  </nav>
-  <main>
-    <aside>
-      <h2>Enjoy the game!</h2>
-      <img src="/images/igloo.png">
-    </aside>
-    
     <div>
       {{{body}}}
     </div>
   </main>
   {{#if loggedIn}}
-  <script src="/js/logout.js"></script>
+  <h1><a href="/game">click to play the game</a></h1>
   {{/if}}
+    </div>
 </body>
 
 </html>

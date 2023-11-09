@@ -1,32 +1,39 @@
-import Phaser from 'phaser'
+    <audio controls>
+        <source src="sfx/Alena Smirnova - Meditation.mp3.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio>
+<script class="game" type="text/javascript">
 
 var player;
 var snowballs;
 var igloo;
+var bullets;
 var platforms;
 var cursors;
 var score = 0;
 var gameOver = false;
 var scoreText;
 var gameOverText;
+var timer;
+var timeLimit = 100;
 
 function preload()
 {
     // preloads the background of the game
-    this.load.image('background', './src/assets/background.png');
+    this.load.image('background', "images/background.png");
     // preloads the platforms/ground
-    this.load.image('ground', './src/assets/platform.png');
+    this.load.image('ground', 'images/platform.png');
     // preloads the snowballs
-    this.load.image('snowballs', './src/assets/snow.png');
+    this.load.image('snowballs', 'images/snow.png');
     // preloads the igloo
-    this.load.image('igloo', './src/assets/igloo.png');
+    this.load.image('igloo', 'images/igloo.png');
     // preloads the player and its spritesheet and sets his size
-    this.load.spritesheet('dude', './src/assets/Snowman.png', { frameWidth: 64, frameHeight: 96 });
+    this.load.spritesheet('dude', 'images/Snowman.png', { frameWidth: 64, frameHeight: 96 });
 }
 
 function create()
 {   
-    // sets the boundary for camera and for the physical border for player
+    // sets the boundary for camera and for the physical border for MC
     this.cameras.main.setBounds(0, 0, 5000, 600);
     this.physics.world.setBounds(0, 0, 5000, 600);
 // add the winter background to keep repeating after the int starting page
@@ -121,7 +128,7 @@ function update()
 
     }
     // appends the score to the top of the screen and follows the player with the camera
-   scoreText.setPosition(player.x, 16);
+    scoreText.setPosition(player.x, 16);
 }
 // sets physics for the igloo
 function goIgloo(player, igloo)
@@ -129,14 +136,14 @@ function goIgloo(player, igloo)
     igloo.disableBody(true, true);
 }
 // game end function does alot of things, first it freezes/pauses all physics, then it tints our player red, and then it sets gameOver to true and appends the gameOverText and sets the color of text to white
+
    function endGame(player, igloo) {
     this.physics.pause();
     player.setTint(0xff0000);
     gameOver = true;
     gameOverText = this.add.text(4300, 250, 'Game Over your final score:', { fontSize: '42px', fill: '#fffff' });
-    gameOverText.setText('Game Over\n Refresh to play again\n your final score: ' + score);
+    gameOverText.setText('Game Complete, GOOD JOB!\n Refresh to play again\n your final score: ' + score);
     gameOverText.setColor('#FFF');
-
 }
 // collectSnowballs function sets physics for snowballs as well as gives the player a score of 10 points for each one collected and updates the scoreText in realtime with the built in setText method
 function collectSnowballs(player, snowballs)
@@ -148,7 +155,7 @@ function collectSnowballs(player, snowballs)
 // the config for the game sets the view port and the type of physics and gravity
 var config = {
     type: Phaser.AUTO,
-    width: 800,
+    width: 1080,
     height: 600,
     physics: {
         default: 'arcade',
@@ -162,7 +169,16 @@ var config = {
         preload: preload,
         create: create,
         update: update
-    }
+    },
+          scale: {
+            // Fit to window
+            mode: Phaser.Scale.FIT,
+            // Center vertically and horizontally
+            autoCenter: Phaser.Scale.CENTER_BOTH
+        },
 };
+
+
 // sets the var of game to a new phaser game and calls the config above
 var game = new Phaser.Game(config);
+</script>
